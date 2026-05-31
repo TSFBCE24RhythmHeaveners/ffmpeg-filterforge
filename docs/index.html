@@ -578,9 +578,10 @@ async function runProcess() {
         break;
       }
       case 'resize': {
-        // Use -2 (not -1) so ffmpeg rounds auto-computed dimension to nearest even —
-        // libx264 requires width and height both divisible by 2.
-        const roundEven = v => { const n = parseInt(v); return isNaN(n) ? '-2' : String(Math.round(n / 2) * 2 || 2); };
+        // libx264 requires dimensions divisible by 2.
+        // -1 / -2 are ffmpeg sentinels meaning "preserve aspect ratio";
+        // -2 additionally guarantees an even result, so normalise any negative to -2.
+        const roundEven = v => { const n = parseInt(v); if (isNaN(n) || n < 0) return '-2'; return String(Math.round(n / 2) * 2 || 2); };
         const wRaw = document.getElementById('resW').value.trim();
         const hRaw = document.getElementById('resH').value.trim();
         const w = wRaw ? roundEven(wRaw) : '-2';
