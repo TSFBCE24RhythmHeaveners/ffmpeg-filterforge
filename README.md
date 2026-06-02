@@ -7,7 +7,7 @@ A browser-based video editor powered by [ffmpeg.wasm](https://github.com/ffmpegw
 ## Use Cases
 
 ### 🎞 GIF Maker
-Convert any video clip into an animated GIF. Set the frame rate and output width; height scales automatically to preserve the aspect ratio. Uses a two-pass palette generation for the best possible colour quality.
+Convert any video clip into an animated GIF. Set the frame rate and output width; height scales automatically to preserve the aspect ratio. Uses a two-pass palette generation for the best possible color quality.
 
 <img src='demos/makegif.gif'>
 
@@ -144,7 +144,7 @@ Clicking a recipe fills in the arguments and extension fields instantly.
 > **Second input file** — the Raw FFmpeg panel includes an optional *Choose file* picker. The selected file is written to ffmpeg's virtual filesystem as `input2.<ext>` and can be referenced in your arguments (e.g. `-i input2.mp3`). Required by the *Replace audio track* recipe.
 
 ### ⬛ Pad / Letterbox
-Add coloured bars to bring a video to a specific aspect ratio without cropping or stretching it. The video is scaled down to fit entirely inside the target canvas; empty space is filled with the chosen pad colour.
+Add colored bars to bring a video to a specific aspect ratio without cropping or stretching it. The video is scaled down to fit entirely inside the target canvas; empty space is filled with the chosen pad color.
 
 | Target Ratio | Typical use |
 |---|---|
