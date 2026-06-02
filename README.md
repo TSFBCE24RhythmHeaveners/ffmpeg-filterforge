@@ -79,8 +79,11 @@ An **Example Commands** library (collapsible) provides one-click recipes to get 
 | 🌑 Vignette effect | `vignette` filter darkens edges |
 | 🔇 Extract audio as WAV | `-vn -acodec pcm_s16le` lossless audio export |
 | 🖼 Extract first frame | `-vframes 1` saves a single PNG |
+| 🎵 Replace audio track | Strips original audio and muxes in `input2.mp3`; uses `-map 0:v:0 -map 1:a:0 -shortest` |
 
 Clicking a recipe fills in the arguments and extension fields instantly.
+
+> **Second input file** — the Raw FFmpeg panel includes an optional *Choose file* picker. The selected file is written to ffmpeg's virtual filesystem as `input2.<ext>` and can be referenced in your arguments (e.g. `-i input2.mp3`). Required by the *Replace audio track* recipe.
 
 ---
 

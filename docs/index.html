@@ -540,6 +540,14 @@
             </details>
 
             <div style="margin-bottom:8px">
+              <label class="lbl">Second input file <span style="font-weight:400;color:var(--muted)">(optional &mdash; reference as <code style="color:var(--accent);font-size:.85em">input2.ext</code> in your args)</span></label>
+              <div style="display:flex;align-items:center;gap:8px">
+                <button class="btn btn-ghost btn-sm" onclick="document.getElementById('rawInput2').click()">Choose file</button>
+                <span id="rawInput2Name" style="font-size:0.78rem;color:var(--muted)">No file chosen</span>
+                <input type="file" id="rawInput2" style="display:none" accept="audio/*,.mp3,.wav,.ogg,.aac,.flac,.m4a,.opus" onchange="onRawInput2Change(this)">
+              </div>
+            </div>
+            <div style="margin-bottom:8px">
               <label class="lbl">Arguments &mdash; inserted after <code style="color:var(--accent);font-size:.8em">-i input</code>, before the output filename</label>
               <textarea id="rawArgs" placeholder="-vf scale=1280:-2 -c:v libx264 -crf 23 -preset fast -c:a aac" oninput="updateRawPreview()"></textarea>
             </div>
@@ -641,15 +649,30 @@ const ffmpeg = new FFmpeg();
 let inputFile = null;
 let inputExt  = '';
 let vidDur    = 0;
-let currentOp = 'convert';
-let outBlob   = null;
-let outExt    = 'mp4';
+let currentOp    = 'convert';
+let outBlob      = null;
+let outExt       = 'mp4';
+let rawInput2File = null;
+let rawInput2Ext  = '';
 
 // ── Expose to inline handlers ─────────────────────────
 Object.assign(window, {
   loadFFmpeg, handleFile, clearInput, setOp,
-  updateTrim, runProcess, download, clearLog, updateSizeEstimate, updateRawPreview
+  updateTrim, runProcess, download, clearLog, updateSizeEstimate, updateRawPreview,
+  onRawInput2Change
 });
+
+function onRawInput2Change(input) {
+  if (!input.files.length) return;
+  rawInput2File = input.files[0];
+  rawInput2Ext  = rawInput2File.name.split('.').pop().toLowerCase();
+  const fsName  = 'input2.' + rawInput2Ext;
+  document.getElementById('rawInput2Name').textContent = '\u2192 stored as ' + fsName;
+  // Auto-update any existing input2.<ext> reference in the args textarea
+  const ta = document.getElementById('rawArgs');
+  ta.value = ta.value.replace(/\binput2\.\w+/g, fsName);
+  updateRawPreview();
+}
 
 // ── Drag & drop ──────────────────────────────────────
 const dz = document.getElementById('dropZone');
@@ -919,6 +942,7 @@ const RAW_EXAMPLES = [
   { label: '🌑 Vignette effect',         args: '-vf vignette=PI/4 -c:v libx264 -crf 23 -preset fast -c:a copy',                                                                                                   ext: 'mp4' },
   { label: '🔇 Extract audio as WAV',    args: '-vn -acodec pcm_s16le',                                                                                                                                           ext: 'wav' },
   { label: '🖼 Extract first frame',     args: '-vframes 1',                                                                                                                                                       ext: 'png' },
+  { label: '🎵 Replace audio track',     args: '-i input2.mp3 -map 0:v:0 -map 1:a:0 -shortest -c:v copy -c:a aac',                                                                                                  ext: 'mp4' },
 ];
 
 function initRawExamples() {
@@ -1131,11 +1155,16 @@ async function runProcess() {
       }
       case 'raw': {
         const userArgs = parseShellArgs(document.getElementById('rawArgs').value);
-        //if (!userArgs.length) throw new Error('No ffmpeg arguments entered.');
         ext = document.getElementById('rawExt').value.trim().replace(/^\./, '') || 'mp4';
         if (document.getElementById('rawBypassTrim').checked) {
           args.length = 0;
           args.push('-i', inName);
+        }
+        // Write optional second input to the virtual FS
+        if (rawInput2File) {
+          const in2Name = 'input2.' + rawInput2Ext;
+          addLog('Writing second input file\u2026', 'ok');
+          await ffmpeg.writeFile(in2Name, await fetchFile(rawInput2File));
         }
         args.push(...userArgs);
         break;
