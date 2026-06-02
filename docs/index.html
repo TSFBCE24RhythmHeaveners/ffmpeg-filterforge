@@ -907,8 +907,8 @@ function updateSizeEstimate() {
 
 // ── Raw FFmpeg example library ──────────────────────
 const RAW_EXAMPLES = [
-  { label: '💧 Add text watermark',      args: `-vf "drawtext=text='WATERMARK':fontcolor=white@0.8:fontsize=36:x=20:y=20:shadowcolor=black:shadowx=2:shadowy=2" -c:v libx264 -crf 23 -preset fast -c:a copy`, ext: 'mp4' },
-  { label: '📝 Burn subtitles (.srt)',    args: '-vf subtitles=subs.srt -c:v libx264 -crf 23 -preset fast -c:a copy',                                                                                              ext: 'mp4' },
+  { label: '� Colour-bar watermark',    args: '-vf "drawbox=x=iw-220:y=ih-55:w=210:h=45:color=black@0.5:t=fill,drawbox=x=iw-218:y=ih-53:w=206:h=41:color=white@0.25:t=fill" -c:v libx264 -crf 23 -preset fast -c:a copy', ext: 'mp4' },
+  { label: '🎞 Cap framerate to 24 fps',  args: '-vf fps=24 -c:v libx264 -crf 23 -preset fast -c:a copy',                                                                                                          ext: 'mp4' },
   { label: '🎨 Convert to grayscale',    args: '-vf format=gray -c:v libx264 -crf 23 -preset fast -c:a copy',                                                                                                     ext: 'mp4' },
   { label: '🔊 Loudness normalize',      args: '-af loudnorm -c:v copy',                                                                                                                                          ext: 'mp4' },
   { label: '📦 Lossless remux (copy)',   args: '-c copy',                                                                                                                                                          ext: 'mp4' },

@@ -67,8 +67,8 @@ An **Example Commands** library (collapsible) provides one-click recipes to get 
 
 | Example | What it does |
 |---|---|
-| 💧 Add text watermark | Overlays `drawtext` with shadow at top-left |
-| 📝 Burn subtitles (.srt) | Hard-bakes a `.srt` subtitle file into the video |
+| � Colour-bar watermark | Semi-transparent `drawbox` stamp in the bottom-right corner |
+| 🎞 Cap framerate to 24 fps | `fps=24` filter + H.264 re-encode |
 | 🎨 Convert to grayscale | `format=gray` + H.264 re-encode |
 | 🔊 Loudness normalize | `loudnorm` filter, stream-copies video |
 | 📦 Lossless remux (copy) | `-c copy` — change container, zero quality loss |
