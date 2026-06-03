@@ -137,6 +137,9 @@ Click **Process Video** to run a **deep scan** (`ffmpeg -hide_banner -i …`) an
 ### 🛠 Raw FFmpeg
 Full access to the ffmpeg command line directly in the browser. Type any arguments into the text area; they are inserted after `-i input` and before the output filename. Choose the output file extension and optionally bypass the trim range. A live **full command preview** updates as you type, showing the exact command that will be executed. Quoted values containing spaces are handled correctly.
 
+<img src='demos/raw.gif'>
+
+
 An **Example Commands** library (collapsible) provides one-click recipes to get started:
 
 | Example | What it does |
@@ -278,4 +281,19 @@ npx serve docs
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0** (GPL-3.0). See the [LICENSE](LICENSE) file for full details.
+This project is licensed under the **GNU General Public License v3.0** (GPL-3.0). See [LICENSE](LICENSE) for details.
+
+### License Summary
+
+You are free to:
+- ✅ Use this software for any purpose
+- ✅ Study and modify the source code  
+- ✅ Distribute copies of the software
+- ✅ Distribute modified versions
+
+With the requirement that you:
+- 📋 Include a copy of the license
+- 📝 Document changes made to the code
+- 📢 Make source code available when distributing
+
+This project builds on [ffmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm) (LGPL-2.1) which is built from [FFmpeg](https://ffmpeg.org/) (LGPL-2.1+).
