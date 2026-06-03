@@ -87,7 +87,7 @@ Mux an `.srt`, `.vtt`, or `.ass` subtitle file into the video as a **soft subtit
 
 Video and audio are stream-copied (zero quality loss, near-instant). Hard-burning subtitles into the picture requires a libass-enabled ffmpeg build and is not available in the standard WebAssembly core.
 
-### � Volume
+### 🔊 Volume
 Boost or reduce the audio level of any video. A single slider sets the **volume multiplier** (0 = silence, 1.0 = unchanged, up to 4×). Audio is re-encoded using the `volume` filter; the video stream is stream-copied (no quality loss, no re-encode overhead).
 
 ### 🔁 Loop / Repeat
