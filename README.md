@@ -1,6 +1,6 @@
 # ffmpeg webCLI
 
-[![GitHub stars](https://img.shields.io/github/stars/tejaswigowda/ffmpeg.wasm.editor?style=social)](https://github.com/tejaswigowda/ffmpeg.wasm.editor/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/tejaswigowda/ffmpeg-webCLI?style=social)](https://github.com/tejaswigowda/ffmpeg-webCLI/stargazers)
 
 A browser-based video editor powered by [ffmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm). <b><ins>No uploads, no servers -- all processing happens locally</ins></b> in your browser using WebAssembly.
 
