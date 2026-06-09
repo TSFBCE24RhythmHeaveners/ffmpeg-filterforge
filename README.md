@@ -14,13 +14,21 @@ A browser-based video editor powered by [ffmpeg.wasm](https://github.com/ffmpegw
 
 
 ✓ **No Server Uploads** — All video processing happens entirely on your device
+
 ✓ **30+ Video Operations** — GIF creation, format conversion, compression, trimming, effects, filters, and more
+
 ✓ **Offline-First PWA** — Works completely offline after first use; install as a native app
+
 ✓ **Screen Wake Lock** — Screen stays active during video processing on any device
+
 ✓ **Live Previews** — See output size estimates and live settings adjustments
+
 ✓ **Multi-Format Support** — MP4, WebM, MKV, MOV, AVI, GIF, MP3, AAC, WAV, OGG, FLAC, JPG, PNG
+
 ✓ **Advanced Features** — Raw ffmpeg command access, subtitle embedding, concatenation, picture-in-picture, audio mixing
+
 ✓ **Fast & Responsive** — Uses Web Workers for background processing
+
 ✓ **Privacy First** — Zero data collection; works with your files locally
 
 ---
@@ -34,10 +42,10 @@ Convert any video clip into an animated GIF. Set the frame rate and output width
 
 ### ↻ Video Format Converter
 Re-encode a video to a different container and codec:
-- **MP4** -- H.264 + AAC, widest compatibility
-- **WebM** -- VP9 + Opus, open format optimised for the web (~45% smaller than MP4 at similar quality)
-- **MKV / MOV** -- H.264 + AAC in alternative containers
-- **AVI** -- legacy compatibility
+- **MP4** : H.264 + AAC, widest compatibility
+- **WebM** : VP9 + Opus, open format optimised for the web (~45% smaller than MP4 at similar quality)
+- **MKV / MOV** : H.264 + AAC in alternative containers
+- **AVI** : legacy compatibility
 
 ### ⊟ Video Compression
 Reduce file size without changing the resolution. Dial in the quality with a **CRF slider** (18 = near-lossless → 51 = maximum compression) and pick an encoding **preset** (ultrafast → veryslow) to trade encoding speed for compression efficiency. A live size estimate updates as you adjust the settings.
@@ -50,11 +58,11 @@ Change the output dimensions and compress in one pass. Width and height are auto
 
 ### ♪ Audio Extraction
 Pull the audio track out of any video into a standalone audio file:
-- **MP3** -- universal playback
-- **AAC** -- efficient lossy, great for mobile
-- **WAV** -- uncompressed PCM
-- **OGG Vorbis** -- open lossy format
-- **FLAC** -- lossless compression
+- **MP3** : universal playback
+- **AAC** : efficient lossy, great for mobile
+- **WAV** : uncompressed PCM
+- **OGG Vorbis** : open lossy format
+- **FLAC** : lossless compression
 
 ### ⊘ Mute Video
 Strip the audio stream entirely. Output is the original video with no audio track -- useful for silent loops, social media clips, or before replacing the audio elsewhere.
@@ -87,8 +95,8 @@ Remove all embedded metadata -- GPS coordinates, camera make/model, creation tim
 
 ### ▢ Embed Subtitles
 Mux an `.srt`, `.vtt`, or `.ass` subtitle file into the video as a **soft subtitle track** -- toggleable on/off in any media player (VLC, browser, etc.) without re-encoding the picture. Output format choices:
-- **MP4** -- subtitle stream encoded as `mov_text`
-- **MKV** -- subtitle stream copied natively (preserves ASS/SSA styling)
+- **MP4** : subtitle stream encoded as `mov_text`
+- **MKV** : subtitle stream copied natively (preserves ASS/SSA styling)
 
 Video and audio are stream-copied (zero quality loss, near-instant). Hard-burning subtitles into the picture requires a libass-enabled ffmpeg build and is not available in the standard WebAssembly core.
 
@@ -100,15 +108,15 @@ Play the video N times back-to-back in a single output file. Set **Total plays**
 
 ### ▭ Logo / Image Overlay
 Stamp a logo, watermark, or any image (PNG with transparency works best) onto every frame. Controls:
-- **Image file** — any PNG, JPG, GIF, or WebP
-- **Position** — bottom-right, top-left, top-right, bottom-left, or centre
-- **Width (% of video)** — scales the logo relative to the video width (default 15%)
+- **Image file** : any PNG, JPG, GIF, or WebP
+- **Position** : bottom-right, top-left, top-right, bottom-left, or centre
+- **Width (% of video)** : scales the logo relative to the video width (default 15%)
 
 Uses the `overlay` filter with a `scale` pre-pass. Video is re-encoded; audio is stream-copied.
 
 ### ♪ Mix Audio (Background Music)
 Blend a second audio file into the video as background music. Controls:
-- **Music / audio file** — MP3, WAV, OGG, AAC, FLAC, M4A
+- **Music / audio file** - MP3, WAV, OGG, AAC, FLAC, M4A
 - **Original audio volume** slider (0–2, default 1.0)
 - **Music volume** slider (0–2, default 0.30)
 
@@ -223,11 +231,11 @@ Video is re-encoded to H.264; audio is stream-copied.
 ## How It Works
 
 **Local Processing:**
-1. Click **Load ffmpeg** -- downloads the ffmpeg-core WebAssembly binary (~31 MB, cached after first load).
+1. Click **Load ffmpeg** : downloads the ffmpeg-core WebAssembly binary (~31 MB, cached after first load).
 2. Drop or select a video file. The **Process Video** button activates; if ffmpeg is not yet loaded it reads **Load ffmpeg & Process** and will download it automatically on first click.
 3. Optionally set trim points with the timeline sliders.
 4. Pick an operation and adjust its settings. A **live size estimate** updates as you change parameters.
-5. Click **Process Video** -- ffmpeg runs entirely in a Web Worker inside your browser.
+5. Click **Process Video** : ffmpeg runs entirely in a Web Worker inside your browser.
 6. Preview the result (video, audio player, or image depending on the operation) and download it.
 
 All file I/O stays on your machine. Nothing is sent to any server.
@@ -292,13 +300,18 @@ This project is licensed under the **GNU General Public License v3.0** (GPL-3.0)
 
 You are free to:
  ✓ Use this software for any purpose
+
  ✓ Study and modify the source code  
+
  ✓ Distribute copies of the software
+
  ✓ Distribute modified versions
 
 With the requirement that you:
  ▢ Include a copy of the license
+
  ✎ Document changes made to the code
+ 
  ◆ Make source code available when distributing
 
 This project builds on [ffmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm) (LGPL-2.1) which is built from [FFmpeg](https://ffmpeg.org/) (LGPL-2.1+).
